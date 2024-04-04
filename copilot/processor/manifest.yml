@@ -15,6 +15,8 @@ cpu: 256       # Number of CPU units for the task.
 memory: 512    # Amount of memory in MiB used by the task.
 count: 1       # Number of tasks that should be running in your service.
 exec: true     # Enable running commands in your container.
+count.queue_delay.acceptable_latency: 10s
+count.queue_delay.msg_processing_time: 1s 
 
 # storage:
   # readonly_fs: true       # Limit to read-only access to mounted root filesystems.
