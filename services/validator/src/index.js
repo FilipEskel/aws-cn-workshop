@@ -1,9 +1,11 @@
 const express   = require('express');
 const env       = require('./env');
+const fault     = require('./middleware');
 const routes    = require('./routes');
 
 const app = express();
 app.use(express.json());
+app.use(fault);
 app.use('/', routes);
 
 app.listen(env.port, () => {
@@ -13,8 +15,5 @@ app.listen(env.port, () => {
 // ...
 // Sigterm handling only
 process.on('SIGTERM', () => {
-    console.log('The service is about to shut down!');
-    
-    // Finish any outstanding requests, then...
-    process.exit(0); 
-  });
+    console.log('SIGTERM signal received, validator service shut down');
+});
